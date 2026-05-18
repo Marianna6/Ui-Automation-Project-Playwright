@@ -1,0 +1,11 @@
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userprefs
+playwright-report/
+test-results/
+.playwright/
+*.log
+.DS_Store
