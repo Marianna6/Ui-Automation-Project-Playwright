@@ -3,7 +3,7 @@ using Microsoft.Playwright;
 
 namespace Ui.Automation.Project.Fixture
 {
-	public class Fixture : IAsyncLifetime
+	public class UiFixture : IAsyncLifetime
 	{
 		public IPlaywright Playwright { get; private set; } = null!;
 		public IBrowser Browser { get; private set; } = null!;
@@ -12,8 +12,8 @@ namespace Ui.Automation.Project.Fixture
 		public async Task InitializeAsync()
 		{
 			var config = new ConfigurationBuilder()
-			.SetBasePath(Directory.GetCurrentDirectory())
-			.AddJsonFile("appsettings.json")
+			.SetBasePath(AppContext.BaseDirectory)
+			.AddJsonFile("appsettings.json", optional: false)
 			.Build();
 
 			var baseUrl = config["BaseUrl"];
@@ -26,11 +26,13 @@ namespace Ui.Automation.Project.Fixture
 				SlowMo = 1000
 			});
 
-			Page = await Browser.NewPageAsync();
+			var context = await Browser.NewContextAsync();
+
+			Page = await context.NewPageAsync();
 
 			if (!string.IsNullOrEmpty(baseUrl))
 			{
-				await Page.GotoAsync(baseUrl);
+				await Page.GotoAsync("https://demowebshop.tricentis.com/");
 			}
 		}
 

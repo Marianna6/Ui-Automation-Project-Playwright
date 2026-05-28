@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using Ui.Automation.Project.Components;
 
 namespace Ui.Automation.Project.Pages
 {
@@ -6,36 +7,15 @@ namespace Ui.Automation.Project.Pages
 	{
 		protected readonly IPage _page;
 
+		public HeaderComponent Header { get; }
+		public FooterComponent Footer { get; }
+
 		public BasePage(IPage page)
 		{
 			_page = page;
-		}
 
-		//HEADER
-		public ILocator HeaderBlock => _page.Locator(".header");
-		public ILocator HeaderLogo => _page.Locator(".header-logo a");
-
-		public ILocator SearchInput => _page.Locator("#small-searchterms");
-		public ILocator SearchButton => _page.Locator(".search-box-button");
-
-		public ILocator LoginLink => _page.Locator(".ico-login");
-		public ILocator RegisterLink => _page.Locator(".ico-register");
-		public ILocator CartLink => _page.Locator(".ico-cart");
-		//public ILocator WishlistLink => _page.Locator(".ico-wishlist");
-		// public ILocator FlyoutCart => _page.Locator("#flyout-cart");
-
-		public ILocator LogoutLink => _page.Locator(".ico-logout");
-		public ILocator AccountLink => _page.Locator(".header-links .account");
-
-		public async Task SearchForAsync(string searchText)
-		{
-			await SearchInput.FillAsync(searchText);
-			await SearchButton.ClickAsync();
-		}
-
-		public async Task LogoutAsync()
-		{
-			await LogoutLink.ClickAsync();
+			Header = new HeaderComponent(page);
+			Footer = new FooterComponent(page);
 		}
 
 		//TOP MENU & SIDE MENU
@@ -55,9 +35,5 @@ namespace Ui.Automation.Project.Pages
 		public ILocator NewsletterEmailInput => _page.Locator("#newsletter-email");
 		public ILocator NewsletterSubscribeButton => _page.Locator("#newsletter-subscribe-button");
 
-		//FOOTER
-		public ILocator FooterBlock => _page.Locator(".footer");
-		public ILocator FooterSectionTitle(string name) => _page.Locator($".footer strong:has-text('{name}')");
-		public ILocator FooterLink(string name) => _page.Locator($".footer a:has-text('{name}')");
 	}
 }
