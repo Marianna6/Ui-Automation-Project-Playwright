@@ -16,7 +16,7 @@ namespace Ui.Automation.Project.Fixture
 			.AddJsonFile("appsettings.json", optional: false)
 			.Build();
 
-			var baseUrl = config["BaseUrl"];
+			var baseUrl = config.GetSection("BaseUrl").Value;
 
 			Playwright = await Microsoft.Playwright.Playwright.CreateAsync();
 
@@ -26,14 +26,14 @@ namespace Ui.Automation.Project.Fixture
 				SlowMo = 1000
 			});
 
-			var context = await Browser.NewContextAsync();
+			var context = await Browser.NewContextAsync(new BrowserNewContextOptions
+			{
+				BaseURL = baseUrl
+			});
 
 			Page = await context.NewPageAsync();
 
-			if (!string.IsNullOrEmpty(baseUrl))
-			{
-				await Page.GotoAsync("https://demowebshop.tricentis.com/");
-			}
+			await Page.GotoAsync("/");
 		}
 
 		public async Task DisposeAsync()

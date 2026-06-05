@@ -49,5 +49,17 @@ namespace Ui.Automation.Project.Pages
 			await SetQuantityAsync(quantity);
 			await ClickAddToCartAsync();
 		}
+
+		public async Task AddDefaultComputerToCartAsync()
+		{
+			var defaultComputer = new ComputerModel
+			{
+				Processor = "2.5 GHz Intel Pentium Dual-Core E2200\r\n     [+15.00]",
+				Ram = "2 GB ",
+				Hdd = "320 GB "
+			};
+
+			await ConfigureAndAddToCartAsync(defaultComputer);
+		}
 	}
 }

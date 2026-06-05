@@ -26,6 +26,11 @@ namespace Ui.Automation.Project.Pages
 		public ILocator TopMenuLink(string name) => _page.Locator($".top-menu a:has-text('{name}')");
 		public ILocator SideMenuLink(string name) => _page.Locator($".block-category-navigation a:has-text('{name}')");
 
+		public async Task SelectMainCategoryAsync(string categoryName)
+		{
+			await SideMenuLink(categoryName).ClickAsync();
+		}
+
 		//MANUFACTURERS
 		public ILocator ManufacturersTitle => _page.Locator(".block-manufacturer .title");
 		public ILocator ManufacturerLink => _page.Locator(".block-manufacturer a:has-text('Tricentis')");

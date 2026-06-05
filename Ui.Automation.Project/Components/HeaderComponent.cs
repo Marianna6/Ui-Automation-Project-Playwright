@@ -18,8 +18,20 @@ namespace Ui.Automation.Project.Components
 		public ILocator SearchButton => _page.Locator(".search-box-button");
 
 		public ILocator LoginLink => _page.Locator(".ico-login");
+
+		public async Task GoToLoginPageAsync()
+		{
+			await LoginLink.ClickAsync();
+		}
+
 		public ILocator RegisterLink => _page.Locator(".ico-register");
-		public ILocator CartLink => _page.Locator(".ico-cart");
+		public ILocator CartLink => _page.Locator("#topcartlink .ico-cart");
+
+		public async Task GoToCartPageAsync()
+		{
+			await CartLink.ClickAsync();
+		}
+
 		//public ILocator WishlistLink => _page.Locator(".ico-wishlist");
 		// public ILocator FlyoutCart => _page.Locator("#flyout-cart");
 

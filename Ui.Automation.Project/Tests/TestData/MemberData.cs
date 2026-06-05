@@ -19,7 +19,7 @@ namespace Ui.Automation.Project.Tests.TestData
 					new ComputerModel
 	                {
 		                Processor = "2.5 GHz Intel Pentium Dual-Core E2200\r\n     [+15.00]",
-		                Ram = "\"8GB\\n                                     [+60.00]\"",
+		                Ram = "2 GB ",
 		                Hdd = "320 GB "
 	                },
 					"Computers",

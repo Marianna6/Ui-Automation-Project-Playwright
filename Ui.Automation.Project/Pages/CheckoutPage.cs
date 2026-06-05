@@ -13,7 +13,7 @@ namespace Ui.Automation.Project.Pages
 		public ILocator PaymentInfoButton => _page.Locator("#payment-info-buttons-container .payment-info-next-step-button");
 		public ILocator ConfirmOrderButton => _page.Locator("#confirm-order-buttons-container .confirm-order-next-step-button");
 
-		public ILocator ThankYouHeader => _page.Locator(".page.checkout-completed-page h1");
+		public ILocator ThankYouHeader => _page.Locator(".checkout-page h1");
 
 		public async Task CompleteCheckoutFlowAsync()
 		{

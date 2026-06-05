@@ -16,5 +16,11 @@ namespace Ui.Automation.Project.Pages
 
 		public ILocator AddToCartButton(string productName) =>
 			_page.Locator($".product-item:has-text('{productName}') .product-box-add-to-cart-button");
+
+		public async Task PickProductAsync(string subCategory, string productName)
+		{
+			await SubcategoryLink(subCategory).ClickAsync();
+			await AddToCartButton(productName).ClickAsync();
+		}
 	}
 }
