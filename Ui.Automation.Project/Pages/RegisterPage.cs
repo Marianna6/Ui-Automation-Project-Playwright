@@ -1,5 +1,7 @@
 ﻿using Microsoft.Playwright;
 
+using Ui.Automation.Project.Models;
+
 namespace Ui.Automation.Project.Pages
 {
 	public class RegisterPage : BasePage
@@ -14,13 +16,13 @@ namespace Ui.Automation.Project.Pages
 		public ILocator RegisterButton => _page.Locator("#register-button");
 		public ILocator ErrorMessage => _page.Locator(".message-error");
 
-		public async Task RegisterUserAsync(string firstName, string lastName, string email, string password)
+		public async Task RegisterUserAsync(UserModel user)
 		{
-			await FirstNameInput.FillAsync(firstName);
-			await LastNameInput.FillAsync(lastName);
-			await EmailInput.FillAsync(email);
-			await PasswordInput.FillAsync(password);
-			await ConfirmPasswordInput.FillAsync(password);
+			await FirstNameInput.FillAsync(user.FirstName);
+			await LastNameInput.FillAsync(user.LastName);
+			await EmailInput.FillAsync(user.Email);
+			await PasswordInput.FillAsync(user.Password);
+			await ConfirmPasswordInput.FillAsync(user.Password);
 			await RegisterButton.ClickAsync();
 		}
 	}

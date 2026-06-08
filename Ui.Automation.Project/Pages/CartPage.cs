@@ -18,13 +18,19 @@ namespace Ui.Automation.Project.Pages
 			await CheckoutButton.ClickAsync();
 		}
 
-		public ILocator RemoveCheckbox => _page.Locator("input[name='removefromcart']").First;
+		public ILocator RemoveCheckbox => _page.Locator("input[name='removefromcart']");
 		public ILocator UpdateCartButton => _page.Locator(".update-cart-button");
 		public ILocator EmptyCartMessage => _page.Locator(".order-summary-content");
 
 		public async Task RemoveProductFromCartAsync()
 		{
-			await RemoveCheckbox.ClickAsync();
+			int count = await RemoveCheckbox.CountAsync();
+
+			for (int i = 0; i < count; i++)
+			{
+				await RemoveCheckbox.Nth(i).ClickAsync();
+			}
+
 			await UpdateCartButton.ClickAsync();
 		}
 	}

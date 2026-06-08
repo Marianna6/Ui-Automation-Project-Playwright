@@ -28,8 +28,5 @@ namespace Ui.Automation.Project.Pages
 		public ILocator RecentlyViewedProductLink(string productName) =>
 			_page.Locator($".block-recently-viewed-products a:has-text('{productName}')");
 
-		//FUTURE BACKLOG Community poll
-		// public ILocator CommunityPollBlock => _page.Locator(".block-poll");
-		// public ILocator PollVoteButton => _page.Locator("#vote-poll-ans-1");
 	}
 }

@@ -32,9 +32,6 @@ namespace Ui.Automation.Project.Components
 			await CartLink.ClickAsync();
 		}
 
-		//public ILocator WishlistLink => _page.Locator(".ico-wishlist");
-		// public ILocator FlyoutCart => _page.Locator("#flyout-cart");
-
 		public ILocator LogoutLink => _page.Locator(".ico-logout");
 		public ILocator AccountLink => _page.Locator(".header-links .account");
 

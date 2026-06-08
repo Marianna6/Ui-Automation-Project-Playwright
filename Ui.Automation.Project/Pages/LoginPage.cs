@@ -11,7 +11,6 @@ namespace Ui.Automation.Project.Pages
 		public ILocator RememberMeCheckbox => _page.Locator("#RememberMe");
 		public ILocator LoginButton => _page.Locator(".login-button");
 		public ILocator ErrorMessageBlock => _page.Locator(".validation-summary-errors");
-		// public ILocator ForgotPasswordLink => _page.Locator("a[href='/passwordrecovery']");
 
 		public async Task LoginAsync(string email, string password)
 		{

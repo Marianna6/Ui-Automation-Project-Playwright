@@ -1,25 +1,19 @@
 ﻿using Microsoft.Playwright;
 
-using System.Threading.Tasks;
-
 using Ui.Automation.Project.Fixture;
 using Ui.Automation.Project.Models;
 using Ui.Automation.Project.Pages;
 using Ui.Automation.Project.Tests.TestData;
 
-using Xunit;
-
 namespace Ui.Automation.Project.Tests
 {
 	public class Tests : IClassFixture<UiFixture>
 	{
-		private readonly IPage _page;
 		private readonly PageContainer _container;
 
 		public Tests(UiFixture fixture)
 		{
-			_page = fixture.Page;
-			_container = new PageContainer(_page);
+			_container = new PageContainer(fixture.Page);
 		}
 
 		[Theory]
@@ -58,7 +52,15 @@ namespace Ui.Automation.Project.Tests
 			await _container.LoginPage.LoginAsync("testmarisha@gmail.com", "123456");
 			await _container.HomePage.SelectMainCategoryAsync("Computers");
 			await _container.CategoryPage.PickProductAsync("Desktops", "Build your own computer");
-			await _container.ProductDetailsPage.AddDefaultComputerToCartAsync();
+
+			var defaultComputer = new ComputerModel
+			{
+				Processor = "2.5 GHz Intel Pentium Dual-Core E2200\r\n     [+15.00]",
+				Ram = "2 GB ",
+				Hdd = "320 GB "
+			};
+			await _container.ProductDetailsPage.ConfigureAndAddToCartAsync(defaultComputer);
+
 			await _container.HomePage.Header.GoToCartPageAsync();
 			await _container.CartPage.RemoveProductFromCartAsync();
 			await Assertions.Expect(_container.CartPage.EmptyCartMessage).ToHaveTextAsync("Your Shopping Cart is empty!");
