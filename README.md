@@ -22,3 +22,8 @@ Automated UI testing for the Demo Web Shop e-commerce platform.
 * **Core Framework**: Playwright for .NET
 * **Test Runner**: xUnit
 * **Assertions**: Playwright Native Assertions (`Assertions.Expect`)
+
+
+
+Configuration Note:For security reasons, sensitive credentials are not hardcoded in this repository.
+To run the tests locally, you must provide a `.runsettings` file in the root of the test project containing `TEST_EMAIL` and `TEST_PASSWORD` environment variables. Ensure the file properties are set to "Copy Always to Output Directory" so the test runner can access it.

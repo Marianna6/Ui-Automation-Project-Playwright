@@ -13,8 +13,8 @@ namespace Ui.Automation.Project.Tests.TestData
 					{
 						FirstName = "M",
 						LastName = "S",
-						Email = "testmarisha@gmail.com",
-						Password = "123456"
+						Email = Environment.GetEnvironmentVariable("TEST_EMAIL") ?? throw new ArgumentNullException("TEST_EMAIL", "Email not found"),
+						Password = Environment.GetEnvironmentVariable("TEST_PASSWORD") ?? throw new ArgumentNullException("TEST_PASSWORD", "Password not found")
 					},
 					new ComputerModel
 	                {
@@ -30,9 +30,9 @@ namespace Ui.Automation.Project.Tests.TestData
 
 		public static IEnumerable<object[]> NegativeLoginData => new List<object[]>
 		{
-			new object[] {"testmarisha@gmail.com", "wrong_password_999", "The credentials provided are incorrect"},
-			new object[] {"fake_marisha_999@gmail.com", "123456", "No customer account found"},
-			new object[] {"testmarisha@gmail.com", "",  "The credentials provided are incorrect"}
+			new object[] {Environment.GetEnvironmentVariable("TEST_EMAIL") ?? throw new ArgumentNullException("TEST_EMAIL"), "wrong_password_999", "The credentials provided are incorrect"},
+			new object[] {"fake_marisha_999@gmail.com", Environment.GetEnvironmentVariable("TEST_PASSWORD") ?? throw new ArgumentNullException("TEST_PASSWORD"), "No customer account found"},
+			new object[] {Environment.GetEnvironmentVariable("TEST_EMAIL") ?? throw new ArgumentNullException("TEST_EMAIL"), "",  "The credentials provided are incorrect"}
 		};
 	}
 }

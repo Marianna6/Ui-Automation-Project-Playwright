@@ -48,8 +48,11 @@ namespace Ui.Automation.Project.Tests
 		[Fact]
 		public async Task ShouldRemoveProductFromCartSuccessfully()
 		{
+			var email = Environment.GetEnvironmentVariable("TEST_EMAIL") ?? throw new ArgumentNullException("TEST_EMAIL");
+			var password = Environment.GetEnvironmentVariable("TEST_PASSWORD") ?? throw new ArgumentNullException("TEST_PASSWORD");
+			
 			await _container.HomePage.Header.GoToLoginPageAsync();
-			await _container.LoginPage.LoginAsync("testmarisha@gmail.com", "123456");
+			await _container.LoginPage.LoginAsync(email, password);
 			await _container.HomePage.SelectMainCategoryAsync("Computers");
 			await _container.CategoryPage.PickProductAsync("Desktops", "Build your own computer");
 
